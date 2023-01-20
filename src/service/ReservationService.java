@@ -31,7 +31,7 @@ public class ReservationService {
 	
 	public void addRoom(IRoom room) {
 		if (rooms.contains(room)) {
-			System.out.print("This Room already exists");
+			System.out.print("Room " + room.getRoomNumber() + " already exists");
 		} else {
 			rooms.add(room);
 		}
@@ -73,7 +73,7 @@ public class ReservationService {
 		return bookableRooms;
 	}
 	
-	public Collection<Reservation> getCustomersReservations(Customer customer) {
+	public Collection<Reservation> getCustomersReservation(Customer customer) {
 		List<Reservation> customerReservations = new LinkedList<Reservation>();
 		for (Reservation reservation : reservations) {
 			if (reservation.getCustomer() == customer) {
@@ -88,6 +88,10 @@ public class ReservationService {
 		for (Reservation reservation : reservations) {
 			System.out.println(reservation);
 		}
+	}
+
+	public Collection<IRoom> getAllRooms() {
+		return rooms;
 	}
 	
 }

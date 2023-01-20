@@ -37,8 +37,8 @@ public class CustomerService {
 			}
 		}
 		
+		System.out.println("This customer doesn't exist");
 		return null;
-		//return new Customer(null, null, customerEmail);
 	}
 	
 	public Collection<Customer> getAllCustomers() {
