@@ -21,7 +21,8 @@ public class MainMenu {
 		System.out.println("Welcome to the Hotel Reservation application!\n"
 				+ "------------------------------------------------------");
 		Scanner scanner = new Scanner(System.in);
-		while (true) {
+		boolean user = true;
+		while (user) {
 			printMenu();
 			String input = scanner.nextLine();
 			switch (input) {
@@ -36,6 +37,7 @@ public class MainMenu {
 				case "5":
 					System.out.println("Shutting down");
 					scanner.close();
+					user = false;
 					break;
 				default:
 					System.out.println("I'm sorry. I don't recognize that output");
