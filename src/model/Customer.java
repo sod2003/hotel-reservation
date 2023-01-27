@@ -14,6 +14,7 @@ public final class Customer {
 			validateEmail(email);
 		} catch (IllegalArgumentException ex) {
 			System.out.println(ex.getLocalizedMessage());
+			this.email = null;
 		}
 	}
 

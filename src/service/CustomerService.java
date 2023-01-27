@@ -6,7 +6,7 @@ import java.util.Set;
 import model.Customer;
 
 public class CustomerService {
-	private static CustomerService instance;
+	private static CustomerService INSTANCE;
 	private Set<Customer> customers;
 
 	private CustomerService() {
@@ -14,11 +14,11 @@ public class CustomerService {
 	}
 	
 	public static CustomerService getInstance() {
-		if (instance == null) {
-			instance = new CustomerService();
+		if (INSTANCE == null) {
+			INSTANCE = new CustomerService();
 		}
 		
-		return instance;
+		return INSTANCE;
 	}
 	
 	public void addCustomer(String email, String firstName, String lastName) {
@@ -27,6 +27,7 @@ public class CustomerService {
 			System.out.println("This customer already exists");
 		} else {
 			customers.add(newCustomer);
+			System.out.println("Customer created");
 		}
 	}
 	

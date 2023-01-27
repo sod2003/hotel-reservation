@@ -9,7 +9,7 @@ import service.CustomerService;
 import service.ReservationService;
 
 public class AdminResource {
-	private static AdminResource instance;
+	private static AdminResource INSTANCE;
 	private CustomerService customerService;
 	private ReservationService reservationService;
 	
@@ -19,11 +19,11 @@ public class AdminResource {
 	}
 	
 	public static AdminResource getInstance() {
-		if (instance == null) {
-			instance = new AdminResource();
+		if (INSTANCE == null) {
+			INSTANCE = new AdminResource();
 		}
 		
-		return instance;
+		return INSTANCE;
 	}
 	
 	public Customer getCustomer(String email) {

@@ -10,7 +10,7 @@ import service.CustomerService;
 import service.ReservationService;
 
 public class HotelResource {
-	private static HotelResource instance;
+	private static HotelResource INSTANCE;
 	private CustomerService customerService;
 	private ReservationService reservationService;
 	
@@ -20,11 +20,11 @@ public class HotelResource {
 	}
 	
 	public static HotelResource getInstance() {
-		if (instance == null) {
-			instance = new HotelResource();
+		if (INSTANCE == null) {
+			INSTANCE = new HotelResource();
 		}
 		
-		return instance;
+		return INSTANCE;
 	}
 	
 	public Customer getCustomer(String email) {

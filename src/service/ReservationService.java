@@ -12,7 +12,7 @@ import model.IRoom;
 import model.Reservation;
 
 public class ReservationService {
-	private static ReservationService instance;
+	private static ReservationService INSTANCE;
 	private List<Reservation> reservations;
 	private HashSet<IRoom> rooms;
 	
@@ -22,11 +22,11 @@ public class ReservationService {
 	}
 	
 	public static ReservationService getInstance() {
-		if (instance == null) {
-			instance = new ReservationService();
+		if (INSTANCE == null) {
+			INSTANCE = new ReservationService();
 		}
 		
-		return instance;
+		return INSTANCE;
 	}
 	
 	public void addRoom(IRoom room) {
