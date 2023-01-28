@@ -30,16 +30,24 @@ public class ReservationService {
 	}
 	
 	public void addRoom(IRoom room) {
-		if (rooms.contains(room)) {
-			System.out.print("Room " + room.getRoomNumber() + " already exists");
-		} else {
+		boolean roomCheck = true;
+		for (IRoom currentRoom : rooms) {
+			String roomNumber = room.getRoomNumber();
+			String curRoomNumber = currentRoom.getRoomNumber();
+			if (roomNumber.equals(curRoomNumber)) {
+				System.out.println("Room " + room.getRoomNumber() + " already exists.");
+				roomCheck = false;
+			}
+		}
+		if (roomCheck) {
 			rooms.add(room);
+			System.out.println("Room " + room.getRoomNumber() + " added.");
 		}
 	}
 	
 	public IRoom getRoom(String roomId) {
 		for (IRoom room : rooms) {
-			if (room.getRoomNumber() == roomId) {
+			if (room.getRoomNumber().equals(roomId)) {
 				return room;
 			}
 		}
@@ -58,7 +66,7 @@ public class ReservationService {
 	}
 	
 	public Collection<IRoom> findRooms(Date checkInDate, Date checkOutDate) {
-		Set<IRoom> bookableRooms = rooms;
+		Set<IRoom> bookableRooms = new HashSet<IRoom>();
 		for (IRoom room : rooms) {
 			bookableRooms.add(room);
 		}
@@ -76,7 +84,7 @@ public class ReservationService {
 	public Collection<Reservation> getCustomersReservation(Customer customer) {
 		List<Reservation> customerReservations = new LinkedList<Reservation>();
 		for (Reservation reservation : reservations) {
-			if (reservation.getCustomer() == customer) {
+			if (reservation.getCustomer().equals(customer)) {
 				customerReservations.add(reservation);
 			}
 		}

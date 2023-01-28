@@ -25,6 +25,8 @@ public class CustomerService {
 		Customer newCustomer = new Customer(firstName, lastName, email);
 		if (customers.contains(newCustomer)) {
 			System.out.println("This customer already exists");
+		} else if (newCustomer.getEmail() == null) {
+			System.out.println("I'm sorry. We can't add a customer account with an invalid e-mail.\n");
 		} else {
 			customers.add(newCustomer);
 			System.out.println("Customer created");
@@ -33,7 +35,7 @@ public class CustomerService {
 	
 	public Customer getCustomer(String customerEmail) {
 		for (Customer customer : customers) {
-			if (customer.getEmail() == customerEmail) {
+			if (customer.getEmail().equals(customerEmail)) {
 				return customer;
 			}
 		}

@@ -34,6 +34,6 @@ public final class Reservation {
 	@Override
 	public String toString() {
 		return "Reservation for " + customer.fullName() + "\nRoom: " + room + "\nCheck-In: "
-				+ checkInDate + "\nCheck-Out: " + checkOutDate;
+				+ checkInDate + "\nCheck-Out: " + checkOutDate + "\n";
 	}
 }

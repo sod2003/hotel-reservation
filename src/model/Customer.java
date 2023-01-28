@@ -51,20 +51,16 @@ public final class Customer {
 	
 	@Override
     public boolean equals(Object obj) {
-		if (obj == null || obj.getClass() != this.getClass()) {
-            return false;
-        }
 		
-		Customer other = (Customer) obj;
-        if (this.fullName() != other.fullName()) {
-            return false;
-        }
-        
-        if (this.email != other.email) {
-        	return false;
-        }
-        
-        return true;
+		if(this == obj) {
+			return true;
+		}
+		
+		if((obj == null) || (obj.getClass() != this.getClass())) {
+			return false;
+		}
+		
+        return this.hashCode() == obj.hashCode();
 	}
 	
 	@Override

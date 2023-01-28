@@ -8,6 +8,6 @@ public final class FreeRoom extends Room {
 	
 	@Override 
 	public final String toString() {
-		return "Room Number: " + roomNumber + "\nFREE ROOM\nRoom Type: " + enumeration;
+		return "Room: " + roomNumber + "\nFREE ROOM\nRoom Type: " + enumeration + "\n";
 	}
 }
