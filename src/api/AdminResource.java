@@ -10,8 +10,8 @@ import service.ReservationService;
 
 public class AdminResource {
 	private static AdminResource INSTANCE;
-	private CustomerService customerService;
-	private ReservationService reservationService;
+	private static CustomerService customerService;
+	private static ReservationService reservationService;
 	
 	private AdminResource() {
 		customerService = CustomerService.getInstance();

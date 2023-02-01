@@ -73,6 +73,10 @@ public class MainMenu {
 			email = scanner.nextLine();
 		}
 		while (true) {
+			if (hotelResource.getCustomer(email) == null) {
+				System.out.println("Customer doesn't exist.\n");
+				break;
+			}
 			try {
 				System.out.println("Please enter a check-in date. (MM/DD/YY)");
 				String input = scanner.nextLine();
@@ -104,11 +108,11 @@ public class MainMenu {
 							selection = scanner.nextLine();
 							if (selection.isEmpty()) {
 								break;
-							} else {
+							}
+							IRoom room = hotelResource.getRoom(selection);
+							if (rooms.contains(room)) {
 								try {
-									IRoom room = hotelResource.getRoom(selection);
 									Reservation reservation = hotelResource.bookARoom(email, room, checkin, checkout);
-									System.out.println("Reservation returned: " + reservation);
 									if (reservation != null) {
 										System.out.println("\nYour reservation:\n" + reservation + "\n");
 										break;
@@ -136,8 +140,12 @@ public class MainMenu {
 		System.out.println("Please enter your account email. (example@example.com):\n");
 		String input = scanner.nextLine();
 		Collection<Reservation> reservations = hotelResource.getCustomerReservations(input);
-		for (Reservation reservation : reservations) {
-			System.out.println(reservation);
+		if (!reservations.isEmpty()) {
+			for (Reservation reservation : reservations) {
+				System.out.println(reservation);
+			}
+		} else {
+			System.out.println("This customer has no reservations.\n");
 		}
 	}
 	

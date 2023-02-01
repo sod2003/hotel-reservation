@@ -35,5 +35,23 @@ public class Room implements IRoom {
 	public String toString() {
 		return "Room: " + roomNumber + "\nPrice: " + price + "\nRoom Type: " + enumeration + "\n";
 	}
-
+	
+	@Override
+    public boolean equals(Object obj) {
+		
+		if(this == obj) {
+			return true;
+		}
+		
+		if((obj == null) || (obj.getClass() != this.getClass())) {
+			return false;
+		}
+		
+        return this.hashCode() == obj.hashCode();
+	}
+	
+	@Override
+	public int hashCode() {
+		return roomNumber.hashCode();
+	}
 }
