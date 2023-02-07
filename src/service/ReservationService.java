@@ -67,24 +67,29 @@ public class ReservationService {
 	
 	public Collection<IRoom> findRooms(Date checkInDate, Date checkOutDate) {
 		Set<IRoom> bookableRooms = new HashSet<IRoom>();
+		Set<IRoom> nonBookableRooms = new HashSet<IRoom>();
+		
 		if (reservations.isEmpty()) {
 			return rooms;
 		}
+		
 		for (Reservation reservation : reservations) {
-			for (IRoom room : rooms) {
-				if (room.equals(reservation.getRoom())) {
-					Date resIn = reservation.getCheckInDate();
-					Date resOut = reservation.getCheckOutDate();
-					if (resIn.before(checkInDate)) {
-						if (resOut.after(checkInDate)) {
-							continue;
-						} else {
-							bookableRooms.add(room);
-						}
-					} else if (resIn.after(checkOutDate)||resIn.equals(checkOutDate)) {
-						bookableRooms.add(room);
-					}
+			Date resIn = reservation.getCheckInDate();
+			Date resOut = reservation.getCheckOutDate();
+			if (resIn.before(checkInDate) || resIn.equals(checkInDate)) {
+				if (resOut.after(checkInDate)) {
+					nonBookableRooms.add(reservation.getRoom());
 				}
+			} else if (resIn.before(checkOutDate)) {
+				if (resOut.after(checkOutDate)) {
+					nonBookableRooms.add(reservation.getRoom());
+				}
+			}
+		}
+		
+		for (IRoom room : rooms) {
+			if (!nonBookableRooms.contains(room)) {
+				bookableRooms.add(room);
 			}
 		}
 		

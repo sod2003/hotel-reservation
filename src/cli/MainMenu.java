@@ -94,7 +94,22 @@ public class MainMenu {
 						calendar.setTime(checkout);
 						calendar.add(calendar.DATE, 7);
 						checkout = calendar.getTime();
-						rooms = hotelResource.findARoom(checkin, checkout);
+						while (true) {
+							System.out.println("Would you like to search for rooms one week out, between " 
+						+ checkin + " and " + checkout + "?\n");
+							String searchAgain = scanner.nextLine();
+							switch (searchAgain.toLowerCase()) {
+							case "y":
+								rooms = hotelResource.findARoom(checkin, checkout);
+								break;
+							case "n":
+								System.out.println("You have have selected to not search a week out.\n");
+								break;
+							default:
+								System.out.println("I don't understand. Try again.\n");
+							}
+							break;
+						}
 					}
 					
 					if (rooms != null && rooms.size() != 0) {
